@@ -1,0 +1,142 @@
+# %% markdown
+# <center><img src="https://www.usherbrooke.ca/communications/fileadmin/_processed_/8/e/csm_UdeS_nouveau_coul.72dpi_05_59d9fc7bf6.jpg" style="width: 30%"></center>
+# <center><b><font size="5">IFT211 @ H2020 - Programmation scientifique en Python</font></b></center>
+# <center><b><font size="4">Devoir 1 - 15%</font></b></center>
+# %% markdown
+# ### Q1A - Réchauffement
+#
+# Créez une variable s qui contient la chaîne "J'adore utiliser Jupyter Notebook".  Utilisez ensuite la fonction split pour créer une liste à partir des divers morceaux de la chaîne.
+# %%
+### Votre code ici
+# %% markdown
+# ### Q1B - Réchauffement
+#
+# Avec les variables numero, date et cours, utiliser la fonction .format() pour imprimer la chaîne suivante :
+#
+# <br><center>En ce 15 janvier 2020, je fais le devoir 1 du cours IFT211.</center>
+# %%
+date = "15 janvier 2020"
+travail = "devoir 1"
+cours = "IFT211"
+# %%
+### Votre code ici
+# %% markdown
+# ### Q1C - Réchauffement
+#
+# Allez chercher la lettre 'e' dans la liste suivante.
+# %%
+lst = ['a','b',[4,10,11],['c',[1,66,['allo']],2,111],'e',7]
+# %%
+### Votre code ici
+# %% markdown
+# ### Q1D - Réchauffement
+#
+# Avec le dictionnaire suivant, allez chercher le mot 'deeper'.
+# %%
+d = {'k1':['val1','val2','val3',{'we':['need','to','go',{'deeper':[1,2,3,'allo']}]}]}
+# %%
+### Votre code ici
+# %% markdown
+# ### Q2 - Convertion Celcius vers Fahrenheit
+#
+# Vous devez faire un programme qui demande un nombre en degrés Celcius à l'utilisateur et qui calcule la valeur correspondante en degrés Fahrenheit incluant deux décimales.  La formule de conversion est la suivante :
+#
+# $$\begin{align}F = \frac{9}{5}C + 32 \end{align}$$
+#
+# La définition des variables est :
+#
+# * $C$ : Degrés en Celcius
+# * $F$ : Degrés en Fahrenheit
+# %%
+### Votre code ici
+# %% markdown
+# ### Q3 - Distance de Hamming
+#
+# La distance de Hamming compare deux chaînes de caractères de longueur identique et détecte le nombre de caractères différents entre les deux. Considérant les deux chaînes générées par le code ci-dessous $chaine1$ et $chaine2$, calculez leur distance de Hamming.
+# %%
+# Données initiales
+import hashlib
+chaine1 = hashlib.md5("chaine1".encode()).hexdigest()
+chaine2 = hashlib.md5("chaine2".encode()).hexdigest()
+print ("La chaîne 1 est :", chaine1)
+print ("La chaîne 2 est :", chaine2)
+# %%
+### Votre code ici
+# %% markdown
+# ### Q4 - Calcul de rebond
+#
+# Lorsque l’on laisse tomber sur le sol une balle de caoutchouc à partir d’une certaine hauteur, sa vitesse au moment de l’impact avec le sol est :
+#
+# $$\begin{align}V = 2 × g × h\end{align}$$
+#
+# La balle rebondit au **trois quarts** de sa hauteur initiale. Écrivez un programme qui calcule la vitesse d’impact de la balle lors du quatrième rebond et la hauteur de la balle si on la laisse tomber sur Terre, en arrondissant le résultat à quatre décimales.  N'oubliez pas d'en extraire la racine carrée afin d'obtenir la bonne réponse. Demandez la hauteur initiale à l'utilisateur. La formule de la gravité est :
+#
+# $$\begin{align}g = \frac{9.80665m}{s^2}\end{align}$$
+#
+# La définition des variables est :
+#
+# * $V$ : Vitesse de la balle
+# * $g$ : Gravité ou accélération
+# * $h$ : Hauteur de départ
+#
+# N.B. m et s sont des unités de mesure.
+# %%
+# Pour utiliser la racine carrée
+from math import sqrt
+
+# Constante donnée
+g = 9.80665
+# %%
+### Votre code ici
+# %% markdown
+# ### Q5 - Distance orthodromique
+#
+# Vous devez faire un programme qui servira à calculer la distance la plus courte entre deux points, $p1$ et $p2$, sur la surface de la terre. Cette distance, appelée **distance orthodromique**, est l’arc du grand cercle sous-tendu par ces deux points. Un grand cercle est celui qui fait le tour de la Terre en ayant un rayon égal à celui de la sphère terrestre.
+#
+# Le programme prendra en entrée les coordonnées des deux points exprimées selon leur longitude et leur latitude. Ces coordonnées sont données en degrés, minutes, secondes. Par convention, la latitude se mesure de l’équateur, marqué 0, vers les pôles, positivement vers le nord et négativement vers le sud. De même, la longitude se mesure à partir du méridien d’origine, marqué 0, positivement vers l’ouest et négativement vers l’est, jusqu’au méridien marqué 180 degrés.
+#
+# L'utilisateur doit entrer les **degrées**, les **minutes** et les **secondes** pour la latitude et la longitude de chaque point.  Vous pourrez dès lors convertir les entrées de l'utilisateur en **radians** selon la formule suivante ou en utilisant une fonction déjà existante en Python avant de procéder aux prochaines étapes :
+#
+# $$\begin{align}radians = \pi * \frac{degrés + \frac{minutes}{60} + \frac{secondes}{3600}}{180}\end{align}$$
+#
+# Le formule pour trouver la distance orthodromique est :
+#
+# $$\begin{align}d = r * \arccos(\sin(lt_{p1}) * \sin(lt_{p2}) + \cos(lt_{p1}) * \cos(lt_{p2}) * \cos(lg_{p2} - lg_{p1}))\end{align}$$
+#
+# La définition des variables est :
+#
+# * $d$ : est la distance orthodromique en kilomètres
+# * $r$ : est le rayon de la sphère terrestre en kilomètres (6378 kilomètres en moyenne)
+# * $lt_{p1}$ : Latitude du point $p1$ en degrés radians
+# * $lt_{p2}$ : Latitude du point $p2$ en degrés radians
+# * $lg_{p1}$ : Longitude du point $p1$ en degrés radians
+# * $lg_{p2}$ : Longitude du point $p2$ en degrés radians
+#
+# Toutes les fonctions mathématiques que vous avez besoin se trouvent dans la librairie `math` de Python3 et sont déjà importées ci-dessous. Affichez vos résultats sous la forme d'une phrases complète à l'aide de la commande `print`.
+#
+# P.S. Tester votre code avec la distance orthodromique entre **Londres** et **Moscou**.
+# %%
+from math import acos, cos, sin, pi
+# %%
+### Votre code ici
+# %% markdown
+# ### Q6 - Indice de Jaccard
+#
+# L'indice de Jaccard sert à obtenir une mesure de similarité entre deux ensembles d'attributs binaires.
+#
+# Si $a = 395842598$ et $b = 195751965$, calculez l'indice de Jaccard entre deux nombres selon les indications et la formule suivantes :
+#
+# * $M_{00}$ : À une position binaire donnée $i$, $a_i = 0$ et $b_i = 0$
+# * $M_{01}$ : À une position binaire donnée $i$, $a_i = 0$ et $b_i = 1$
+# * $M_{10}$ : À une position binaire donnée $i$, $a_i = 1$ et $b_i = 0$
+# * $M_{11}$ : À une position binaire donnée $i$, $a_i = 1$ et $b_i = 1$
+#
+#
+# $$\begin{align}J = \frac{M_{11}}{M_{01} + M_{10} + M_{11}}\end{align}$$
+#
+# N.B. Votre code doit convertir les deux nombres vers le format binaire approprié pour  être en mesure de faire les comparaisons nécessaires afin de calculer le résultat final.
+# %%
+a = 395842598
+b = 195751965
+# %%
+### Votre code ici

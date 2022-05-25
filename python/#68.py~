@@ -1,0 +1,20 @@
+def partition(a,quantites):
+    partitions = []
+    for i in quantites:
+        left = a - i
+        routes = [i]
+        if(left > 0):
+            parts = partition(left,quantites)
+            for j in parts:
+                routesC = routes.copy()
+                if (type(j) != list):
+                    j = [j]
+                routesC.extend(j)
+                partitions.append(routesC)
+        elif(left == 0):
+            partitions.append(routes)
+            return partitions
+        else:
+            return partitions
+
+print(10)
