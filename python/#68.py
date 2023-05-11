@@ -1,35 +1,14 @@
-from time import sleep
-
-def partition(a, quantites):
-    partitions = []
-    for i in quantites:
-        left = a - i
-        routes = [i]
-        if(left > 0):
-            parts = partition(left, quantites)
-            for j in parts:
-                routesC = routes.copy()
-                if (type(j) != list):
-                    j = [j]
-                routesC.extend(j)
-                partitions.append(routesC)
-        elif(left == 0):
-            partitions.append(routes)
-            return partitions
-        else:
-            return partitions
-
 def permutations(liste):
-    if(type(liste == str)):
+    if (type(liste == str)):
         liste = list(liste)
     output = []
-    if(len(liste) > 1):
+    if (len(liste) > 1):
         for i in liste:
             copy = liste.copy()
             copy.remove(i)
             miniOut = [i]
             permut = permutations(copy)
-            for j  in permut:
+            for j in permut:
                 miniOutCopy = miniOut.copy()
                 if (type(j) != list):
                     j = [j]
@@ -37,30 +16,36 @@ def permutations(liste):
                 output.append(miniOutCopy)
     else:
         (output.extend(liste))
-    return(output)
+    return (output)
 
 
-par = partition(9, [1,2,9])
+def sum_str(l):
+    out = ""
+    for i in l:
+        out += str(i)
+    return out
 
-par = [p for p in par if len(p) == 3 and len(set(p)) == len(p)][::-1]
 
-ind = [0, 1, 2, 3, 4, len(par)]
+sides = [[5+i, 0+i, (1+i) % 5] for i in range(5)]
 
-found = False
+ps = permutations(range(1, 10+1))
 
-while not found:
-    if sum([par[ind[i]][1] == par[ind[(i+1) % 5]][2] for i in range(5)]) == 5:
-        found = True
+valid = []
 
-    mov = False
-    for i in range(5)[::-1]:
-        if ind[i] + 1 < ind[i+1] and not mov:
-            ind[i] += 1
-            mov = True
-        elif ind[i]+5-i == len(par) and ind[i-1]+1 < ind[i] and not mov:
-            print('hey')
-            i -= 1
-            ind[i:5] = range(ind[i]+1, ind[i]+6-i)
-            mov = True
-    sleep(0.05)
-    print(ind)
+for p in ps:
+    sums = [sum([p[n] for n in side]) for side in sides]
+    if sums[0] == sums[1] == sums[2] == sums[3] == sums[4]:
+        valid.append(p)
+
+
+max_s = 0
+
+for p in valid:
+    outer_n = [p[side[0]] for side in sides]
+    if outer_n[0] < min(outer_n[1:]):
+        string = sum_str([sum_str([p[n] for n in side]) for side in sides])
+        if len(string) == 16:
+            if int(string) > max_s:
+                max_s = int(string)
+                sol = p
+print(max_s)

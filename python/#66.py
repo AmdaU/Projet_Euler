@@ -1,30 +1,37 @@
-sfrom numpy import ceil
+from decimal import *
+getcontext().prec = 100
 
-isSq = lambda n: n == round(n**(1/2))**2
 
-D = 2
+def xn(hs, ks, xs):
+    def MCD(a, b):
+        while b != 0:
+            a, b = b, a % b
+        return a
 
-lst = []
-while D < 61:
-    g = 1
-    if isSq(D):
-        D+=1
-    found = False
-    y = 1
-    q = 1
-    while not found:
-        a = D**(1/2)*y
-        if round(a+0.5) < a + g:
-            q += 1
-            b = D*y**2 + 1
-            if isSq(b):
-                found = True
-                lst.append(b*(1/2))
-                print(b**(1/2))
+    hn, kn = int(xs[-1])*hs[-1] + hs[-2], int(xs[-1])*ks[-1] + ks[-2]
+    hn, kn = (x//MCD(hn, kn) for x in (hn, kn))
 
-        print(y,q,g)
-        x = (1 + D*(y-1000000)**2)**(1/2)
-        g = x - (x**2 - 1)**(1/2)
-        y+=1
+    xs.append(1/(xs[-1]-int(xs[-1])))
+    hs.append(hn)
+    ks.append(kn)
+    return hs[-1], ks[-1]
 
-    D +=1
+
+def satisfies_pell(x, y, D):
+    return x*x - D*y*y - 1
+
+
+squares = [x*x for x in range(int(1001**(1/2))+1)]
+
+xmax, dmax = 0, 0
+for D in range(2, 1001):
+    if D not in squares:
+        hs, ks, xs = [0, 1], [1, 0], [Decimal(D).sqrt()]
+        while True:
+            a, b = xn(hs, ks, xs)
+            if not satisfies_pell(a, b, D):
+                if a > xmax:
+                    dmax, xmax = D, a
+                break
+
+print(dmax)
