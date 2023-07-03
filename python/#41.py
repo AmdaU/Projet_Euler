@@ -24,7 +24,7 @@ def estPrem(x):
     pasDeFacteur = True
     tested = x
     candidateForFactor = 2
-    while(candidateForFactor <= tested/candidateForFactor and pasDeFacteur):
+    while(candidateForFactor**2 <= tested/candidateForFactor and pasDeFacteur):
         if(tested % candidateForFactor == 0):
             pasDeFacteur = False
         candidateForFactor += 1

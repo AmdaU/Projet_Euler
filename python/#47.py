@@ -1,33 +1,18 @@
-from collections import Counter
+def factorize(x, factors, factor_canditate):
+    while(factor_canditate*factor_canditate <= x):
+        if (res := divmod(x,factor_canditate))[1] == 0:
+            x = res[0]
+            factors.append(factor_canditate)
+            factor_canditate = 1
+        factor_canditate += 1
+    return factors + [x]
 
-def factorize(x):
-    if (x <= 1):
-        return False
-    tested = x
-    facteurs = []
-    candidateForFactor = 2
-    while(candidateForFactor <= tested):
-        if(tested % candidateForFactor == 0):
-            tested /= candidateForFactor
-            facteurs.append(candidateForFactor)
-            candidateForFactor = 1
-        candidateForFactor += 1
-    return facteurs
+n, nums = 2, [0,0,0,0]
 
-found = False
-n = 2
-
-nums = [0,0,0,0]
-
-while(not found):
-    nums[0] = nums[1]
-    nums[1] = nums[2]
-    nums[2] = nums[3]
-    nums[3] = (len(Counter(factorize(n))))
-    if(Counter(nums)[4] == 4):
-        found = True
-        print(n-3)
+while not all(num == 4 for num in nums):
     n+=1
+    nums.append(len(set(factorize(n, [], 2))))
+    nums.pop(0)
 
-for i in range(4):
-    print(factorize(134043+i))
+print(n-3)
+

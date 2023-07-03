@@ -1,5 +1,3 @@
-from progressbar import ProgressBar
-
 def permutations(liste):
     if(type(liste == str)):
         liste = list(liste)
@@ -26,10 +24,7 @@ div = [2,3,5,7,11,13,17]
 
 somme = 0
 
-pbar = ProgressBar().start()
-
 for p in range(len(pan)):
-    pbar.update((p/len(pan))*100)
     YAS = True
     for i in range(7):
         s = ""
@@ -43,6 +38,5 @@ for p in range(len(pan)):
         for i in pan[p]:
             s += str(i)
         somme += int(s)
-pbar.finish()
 
 print(somme)

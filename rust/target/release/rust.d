@@ -1,1 +1,1 @@
-/home/amda/Documents/Projects/Project_Euler/rust/target/release/rust: /home/amda/Documents/Projects/Project_Euler/rust/src/a4.rs /home/amda/Documents/Projects/Project_Euler/rust/src/main.rs
+/home/amda/Documents/Projects/Projet_Euler/rust/target/release/rust: /home/amda/Documents/Projects/Projet_Euler/rust/src/a5.rs /home/amda/Documents/Projects/Projet_Euler/rust/src/main.rs
